@@ -20,6 +20,18 @@ Greedy choice: The largest coin is always included in some optimal solution sinc
 1c) W(n) = O(logn) since the loop runs at a worst case log2n times for each of the sets in n.
 S(N) = O(logn) since the algorithm is sequential so span = work
 
-2a) The algorithm does not give the optimal number of coins when coins = [1, 3, 4] and n = 6. You take out the largest coin (n) and are left with 2, for which you need two 1 coins. The optimal solution would have been two 3 coins, but you instead used three.
+2a) The algorithm does not give the optimal number of coins when coins = [1, 4, 5] and n = 8. You take out the largest coin (n) and are left with 3, for which you need three 1 coins. The optimal solution would have been two 4 coins, but you instead used four coins.
 
-2b) 
+2b) If min coins is the minimum amount of coins needed to make change, then minCoins(n) = {0 if n = 0, min_(di<n){1 + minCoins(n - di)} if n >0}. This is optimal since if we choose coin di first, the remaining amount is n - di. The optimal solution for n must include n - di for some di, so the problem can be broken into smaller subproblems, and their solutions can be reused.
+
+### 2c) def min_coins(d, n):
+    dp = [float('inf')] * (n + 1)
+    dp[0] = 0 
+
+    for i in range(1, n + 1):
+        for coin in d:
+            if coin <= i:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+    
+    return dp[n] if dp[n] != float('inf') else -1
+The work would be W(n) = O(nk) where k = the number of denominations and span would be S(n) = O(n)
