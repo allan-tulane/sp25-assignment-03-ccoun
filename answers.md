@@ -20,3 +20,6 @@ Greedy choice: The largest coin is always included in some optimal solution sinc
 1c) W(n) = O(logn) since the loop runs at a worst case log2n times for each of the sets in n.
 S(N) = O(logn) since the algorithm is sequential so span = work
 
+2a) The algorithm does not give the optimal number of coins when coins = [1, 3, 4] and n = 6. You take out the largest coin (n) and are left with 2, for which you need two 1 coins. The optimal solution would have been two 3 coins, but you instead used three.
+
+2b) 
